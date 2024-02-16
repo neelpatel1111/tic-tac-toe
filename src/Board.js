@@ -89,11 +89,11 @@ const Board = () => {
         else if (data[2] !== '' && data[2] === data[4] && data[4] === data[6]) {
             displayWinner(data[2])
         }
-
-        if (!(data.includes(''))) {
-            displayDraw();
+        else {
+            if (!(data.includes(''))) {
+                displayDraw();
+            }
         }
-
     }
 
     return (
