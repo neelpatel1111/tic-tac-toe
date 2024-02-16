@@ -33,17 +33,17 @@ const Board = () => {
     const [turn, setTurn] = useState('X');
 
     const displayWinner = (winner) => {
-        toast(`Player ${winner} wins!!!`, {
+        toast(`'${winner}' WINS!!!`, {
             position: 'top-center',
-            className: 'fs-3'
+            className: 'fs-3 text-center'
         })
         reset()
     }
 
     const displayDraw = () => {
-        toast(`Draw!!!`, {
+        toast(`DRAW`, {
             position: 'top-center',
-            className: 'fs-3'
+            className: 'fs-3  text-center'
         })
         reset()
     }
@@ -72,7 +72,7 @@ const Board = () => {
         }
 
         //COLUMN WIN CHECK
-        if (data[0] !== '' && data[0] === data[3] && data[3] === data[6]) {
+        else if (data[0] !== '' && data[0] === data[3] && data[3] === data[6]) {
             displayWinner(data[0])
         }
         else if (data[1] !== '' && data[1] === data[4] && data[4] === data[7]) {
@@ -83,11 +83,15 @@ const Board = () => {
         }
 
         //CROSS WIN CHECK
-        if (data[0] !== '' && data[0] === data[4] && data[4] === data[8]) {
+        else if (data[0] !== '' && data[0] === data[4] && data[4] === data[8]) {
             displayWinner(data[0])
         }
         else if (data[2] !== '' && data[2] === data[4] && data[4] === data[6]) {
             displayWinner(data[2])
+        }
+
+        if (!(data.includes(''))) {
+            displayDraw();
         }
 
     }
@@ -95,26 +99,42 @@ const Board = () => {
     return (
         <>
             <ToastContainer />
-            <div className="container w-50 mt-5 fs-1 text-center text-danger">
-                T
-                <span className="text-info">
-                    i
-                </span>
-                c&nbsp;
-                <span className="text-info">
-                    T
-                </span>
-                a
-                <span className="text-info">
-                    c&nbsp;
-                </span>
-                T<span className="text-info">
-                    o
-                </span>
-                e
+            {/* Title */}
+            <div className="container w-50 mt-5 text-center text-danger">
+                <h1>
+                    <span className="border-bottom border-2 border-info">
+                        T
+                        <span className="text-info">
+                            i
+                        </span>
+                        c
+                    </span>
+                    &nbsp;
+
+                    <span className="border-bottom border-2 border-danger">
+                        <span className="text-info">
+                            T
+                        </span>
+                        a
+                        <span className="text-info">
+                            c
+                        </span>
+                    </span>
+                    &nbsp;
+
+                    <span className="border-bottom border-2 border-info">
+                        T<span className="text-info">
+                            o
+                        </span>
+                        e
+                    </span>
+                </h1>
             </div>
-            <div className="container w-50 my-3 text-info fs-3">
-                Turn : <span className="text-danger">{turn}</span>
+
+            {/* Turn and Reset */}
+            <div className="container d-flex justify-content-between w-50 my-4 text-info fs-3">
+                <span>Turn : <span className="text-danger">{turn}</span></span>
+                <button className="btn btn-outline-danger border-2 text-info" onClick={reset}>Reset</button>
             </div>
 
             {/* Board */}
@@ -131,13 +151,13 @@ const Board = () => {
 
                     <div className="btn border-0 border-end border-bottom border-2 border-info rounded-0 text-danger p-3"
                         onClick={() => handleClick(turn, 1)}
-                        style={{ width: 20 + 'vh', fontSize: '10vh'  }}>
+                        style={{ width: 20 + 'vh', fontSize: '10vh' }}>
                         {data[1]}
                     </div>
 
                     <div className="btn border-0 border-bottom border-2 border-info rounded-0 text-danger p-3"
                         onClick={() => handleClick(turn, 2)}
-                        style={{ width: 20 + 'vh', fontSize: '10vh'  }}>
+                        style={{ width: 20 + 'vh', fontSize: '10vh' }}>
                         {data[2]}
                     </div>
 
@@ -147,17 +167,17 @@ const Board = () => {
                 <div className='d-flex m-auto justify-content-center' style={{ height: 20 + 'vh' }}>
                     <div className="btn border-0 border-end border-bottom border-2 border-info rounded-0  text-danger p-3"
                         onClick={() => handleClick(turn, 3)}
-                        style={{ width: 20 + 'vh', fontSize: '10vh'  }}>
+                        style={{ width: 20 + 'vh', fontSize: '10vh' }}>
                         {data[3]}
                     </div>
                     <div className="btn border-0 border-end border-bottom border-2 border-info rounded-0 text-danger p-3"
                         onClick={() => handleClick(turn, 4)}
-                        style={{ width: 20 + 'vh', fontSize: '10vh'  }}>
+                        style={{ width: 20 + 'vh', fontSize: '10vh' }}>
                         {data[4]}
                     </div>
                     <div className="btn border-0 rounded-0 border-2 border-info border-bottom text-danger p-3"
                         onClick={() => handleClick(turn, 5)}
-                        style={{ width: 20 + 'vh', fontSize: '10vh'  }}>
+                        style={{ width: 20 + 'vh', fontSize: '10vh' }}>
                         {data[5]}
                     </div>
                 </div>
@@ -166,17 +186,17 @@ const Board = () => {
                 <div className='d-flex m-auto justify-content-center' style={{ height: 20 + 'vh' }}>
                     <div className="btn border-0 border-end border-2 border-info rounded-0 text-danger p-3"
                         onClick={() => handleClick(turn, 6)}
-                        style={{ width: 20 + 'vh', fontSize: '10vh'  }}>
+                        style={{ width: 20 + 'vh', fontSize: '10vh' }}>
                         {data[6]}
                     </div>
                     <div className="btn border-0 border-end border-2 border-info rounded-0 text-danger p-3"
                         onClick={() => handleClick(turn, 7)}
-                        style={{ width: 20 + 'vh', fontSize: '10vh'  }}>
+                        style={{ width: 20 + 'vh', fontSize: '10vh' }}>
                         {data[7]}
                     </div>
                     <div className="btn border-0 border-2 border-info rounded-0 text-danger p-3"
                         onClick={() => handleClick(turn, 8)}
-                        style={{ width: 20 + 'vh', fontSize: '10vh'  }}>
+                        style={{ width: 20 + 'vh', fontSize: '10vh' }}>
                         {data[8]}
                     </div>
                 </div>
